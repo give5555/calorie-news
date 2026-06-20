@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>轻食的「热量谎言」——上海消保委60款轻食测评真相</title>
+<meta name="description" content="你以为的轻食，可能并不轻。上海消保委测评60款轻食，85%热量虚标，最高超标5.6倍。">
+<!-- WeChat sharing meta (default fallback) -->
+<meta property="og:title" content="轻食的「热量谎言」">
+<meta property="og:description" content="85%的轻食外卖热量虚标，最高超标5.6倍">
+<!--
+  微信分享封面图：请制作一张 600×600px 的 JPG 图片，放在同目录下，
+  然后修改 content 为你的实际域名路径。
+  图片建议：粉色系背景 + "轻食的「热量谎言」"大标题 + "85%产品热量虚标"
+  必须是绝对 URL（微信要求），不能用相对路径。
+-->
+<meta property="og:image" content="https://give5555.github.io/calorie-news/share-cover.jpg">
+<!-- 微信有时对 JPG 不灵，同时声明 image/jpeg 类型 -->
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:type" content="article">
+<!-- ECharts：国内用 BootCDN，海外可换回 jsdelivr -->
+<script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+<script>window.echartsFallback = function(){var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js';document.head.appendChild(s);};</script>
+<style>
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-tap-highlight-color: transparent; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(180deg, #ffeef2 0%, #fff5f5 30%, #fef0f5 60%, #ffeef2 100%);
+  color: #4a3030;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+/* ===== Scroll Container ===== */
+.app {
+  height: 100vh;
+  height: 100dvh; /* 支持的浏览器优先使用 dvh，避免微信 X5 地址栏遮挡 */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.app::-webkit-scrollbar { width: 0; }
+
+/* ===== Slide Common ===== */
+.slide {
+  min-height: 100vh;
+  min-height: 100dvh;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.slide-inner {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Dot Indicator ===== */
+.dot-indicator {
+  position: fixed; right: 12px; top: 50%; transform: translateY(-50%);
+  z-index: 999; display: flex; flex-direction: column; gap: 8px;
+}
+.dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(0,0,0,0.12);
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.dot.active { background: #f472b6; height: 20px; border-radius: 3px; }
+
+/* ===== P0: Cover ===== */
+.cover-emoji { font-size: 80px; display: block; text-align: center; animation: float 3s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+.cover-title {
+  font-size: 2.4rem; font-weight: 900; text-align: center; line-height: 1.2; margin: 20px 0 12px;
+  background: linear-gradient(135deg, #f472b6, #f9a8d4, #fb7185);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.cover-subtitle { text-align: center; color: #9b7070; font-size: 1rem; line-height: 1.7; }
+.cover-source { text-align: center; color: #8b6b6b; font-size: 0.8rem; margin-top: 16px; }
+.cover-arrow {
+  position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+  color: #f472b6; font-size: 1.5rem; animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(10px); } }
+
+/* ===== P1: Market Intro ===== */
+.market-badge { display: inline-block; padding: 6px 16px; border-radius: 50px; background: rgba(244,114,182,0.12); color: #f472b6; font-size: 0.8rem; font-weight: 600; }
+.market-stat { font-size: 3rem; font-weight: 900; color: #3a2020; margin: 16px 0 4px; }
+.market-stat span { color: #f472b6; }
+.market-unit { color: #9b7070; font-size: 0.9rem; }
+.market-question { font-size: 1.3rem; font-weight: 700; color: #f87171; margin-top: 32px; text-align: center; }
+
+/* ===== Section Title Common ===== */
+.section-label { display: inline-block; padding: 4px 12px; border-radius: 4px; background: rgba(248,113,113,0.15); color: #f87171; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em; margin-bottom: 12px; }
+.section-title { font-size: 1.5rem; font-weight: 800; line-height: 1.3; margin-bottom: 16px; }
+.section-text { color: #8b6060; font-size: 0.95rem; line-height: 1.8; margin-bottom: 12px; }
+
+/* ===== P2: Core Findings ===== */
+.big-number-wrap { text-align: center; margin: 20px 0; }
+.big-number { font-size: 5rem; font-weight: 900; color: #f87171; line-height: 1; }
+.big-number-label { color: #9b6b6b; font-size: 1rem; margin-top: 4px; }
+.chart-container { width: 100%; height: 280px; margin: 16px 0; }
+
+/* ===== P3: Extreme Case ===== */
+.extreme-cards { display: flex; gap: 12px; margin: 20px 0; }
+.extreme-card {
+  flex: 1; border-radius: 20px; padding: 20px 16px; text-align: center;
+  border: 1px solid rgba(244,114,182,0.12);
+  background: #fff; box-shadow: 0 4px 16px rgba(244,114,182,0.06);
+}
+.extreme-card.labeled { background: #fffafc; }
+.extreme-card.actual { background: rgba(248,113,113,0.08); border-color: rgba(248,113,113,0.25); }
+.extreme-card .ec-label { font-size: 0.75rem; color: #a08080; margin-bottom: 8px; }
+.extreme-card .ec-value { font-size: 2.4rem; font-weight: 900; }
+.extreme-card.labeled .ec-value { color: #9b7070; }
+.extreme-card.actual .ec-value { color: #f87171; }
+.extreme-card .ec-unit { font-size: 0.8rem; color: #8b6b6b; }
+.extreme-arrow {
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem; color: #f87171; font-weight: 700;
+}
+.extreme-badge {
+  display: inline-block; margin: 12px auto; padding: 10px 24px; border-radius: 50px;
+  background: rgba(248,113,113,0.15); color: #f87171; font-weight: 700; font-size: 1.1rem;
+  text-align: center; width: 100%;
+}
+
+/* ===== P4: Dressing Trap ===== */
+.dressing-cards { display: flex; gap: 8px; margin: 16px 0; overflow-x: auto; scrollbar-width: none; }
+.dressing-cards::-webkit-scrollbar { display: none; }
+.dressing-card {
+  flex-shrink: 0; width: 100px; padding: 14px 10px; border-radius: 16px;
+  text-align: center; background: #fff; border: 1px solid rgba(244,114,182,0.12);
+  box-shadow: 0 2px 8px rgba(244,114,182,0.05);
+}
+.dressing-card .dc-emoji { font-size: 1.8rem; display: block; margin-bottom: 4px; }
+.dressing-card .dc-name { font-size: 0.75rem; color: #6b4040; margin-bottom: 2px; }
+.dressing-card .dc-kcal { font-size: 0.8rem; color: #f87171; font-weight: 700; }
+.dressing-card .dc-fake { font-size: 0.65rem; color: #8b6b6b; text-decoration: line-through; }
+
+/* ===== P5: Sodium Warning ===== */
+.gauge-container { width: 100%; height: 260px; margin: 8px 0; }
+.sodium-stat { text-align: center; margin: 8px 0; }
+.sodium-stat .ss-big { font-size: 2rem; font-weight: 900; color: #fb923c; }
+.sodium-stat .ss-label { font-size: 0.85rem; color: #9b7070; }
+
+/* ===== P6: Industry + Tips ===== */
+.tips-list { margin: 16px 0; }
+.tip-item {
+  display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(0,0,0,0.04);
+  align-items: flex-start;
+}
+.tip-num {
+  flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(244,114,182,0.15); color: #f472b6;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700;
+}
+.tip-text { font-size: 0.9rem; color: #7a5050; line-height: 1.6; }
+.tip-text b { color: #3a2020; }
+
+/* ===== P7: Game ===== */
+.game-header { text-align: center; margin-bottom: 16px; }
+.game-header .gh-icon { font-size: 2rem; }
+.game-header .gh-title { font-size: 1rem; font-weight: 700; color: #f472b6; margin-top: 4px; }
+.game-header .gh-sub { font-size: 0.8rem; color: #a08080; }
+.game-state { position: relative; }
+.game-state-hidden { display: none; }
+
+/* Game progress */
+.game-progress { margin-bottom: 12px; }
+.game-progress-bar { height: 3px; background: rgba(0,0,0,0.06); border-radius: 2px; overflow: hidden; }
+.game-progress-fill { height: 100%; background: linear-gradient(90deg, #f472b6, #fb7185); border-radius: 2px; transition: width 0.4s ease; }
+.game-progress-steps { display: flex; justify-content: space-between; margin-top: 6px; }
+.game-step { font-size: 0.6rem; color: #b09090; transition: color 0.3s; }
+.game-step.done { color: #f472b6; }
+.game-step.current { color: #f472b6; font-weight: 700; }
+
+/* Game category tabs */
+.game-cats { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
+.game-cats::-webkit-scrollbar { display: none; }
+.game-cat {
+  flex-shrink: 0; padding: 8px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 600;
+  background: #fff; color: #a08080; border: 1px solid rgba(244,114,182,0.12);
+  cursor: pointer; transition: all 0.3s; white-space: nowrap; font-family: inherit;
+}
+.game-cat.active { background: rgba(244,114,182,0.12); color: #f472b6; border-color: rgba(244,114,182,0.25); }
+
+/* Game ingredient grid */
+.game-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; max-height: 320px; overflow-y: auto; scrollbar-width: none; overscroll-behavior: contain; }
+.game-grid::-webkit-scrollbar { display: none; }
+.game-card {
+  background: #fff; border: 2px solid rgba(244,114,182,0.10); border-radius: 16px;
+  padding: 12px; cursor: pointer; transition: all 0.25s; position: relative; text-align: center;
+  box-shadow: 0 2px 8px rgba(244,114,182,0.04);
+}
+.game-card:active { transform: scale(0.95); }
+.game-card.selected { border-color: #f472b6; background: rgba(244,114,182,0.08); box-shadow: 0 0 12px rgba(244,114,182,0.15); }
+.game-card .gc-emoji { font-size: 1.5rem; display: block; margin-bottom: 4px; }
+.game-card .gc-name { font-weight: 600; font-size: 0.8rem; color: #6b4040; }
+.game-card .gc-hint { font-size: 0.65rem; color: #b09090; margin-top: 2px; }
+.game-card .gc-check {
+  position: absolute; top: 6px; right: 6px; width: 20px; height: 20px; border-radius: 50%;
+  background: #f472b6; display: flex; align-items: center; justify-content: center; font-size: 11px; color: #000;
+  opacity: 0; transform: scale(0); transition: all 0.25s;
+}
+.game-card.selected .gc-check { opacity: 1; transform: scale(1); }
+
+/* Game bottom bar */
+.game-bottom { margin-top: 10px; }
+.game-selected-tags { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 6px; min-height: 20px; }
+.game-tag { font-size: 0.65rem; background: rgba(244,114,182,0.1); color: #f472b6; padding: 2px 8px; border-radius: 50px; }
+.game-btn {
+  width: 100%; padding: 14px; border-radius: 50px; border: none; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; font-family: inherit;
+  background: rgba(0,0,0,0.05); color: #8b6b6b;
+}
+.game-btn:active { transform: scale(0.97); }
+.game-btn.ready { background: linear-gradient(135deg, #f472b6, #ec4899); color: #000; }
+.game-btn:disabled { opacity: 0.3; pointer-events: none; }
+
+/* Game reveal */
+.game-reveal { text-align: center; }
+.game-reveal .gr-bowl { font-size: 4rem; display: block; animation: pulse 0.6s ease-in-out infinite alternate; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.06); } }
+.game-reveal .gr-label { color: #9b7070; font-size: 0.9rem; margin: 8px 0; }
+.game-reveal .gr-cals { font-size: 3.5rem; font-weight: 900; color: #f87171; line-height: 1; }
+.game-reveal .gr-cals.green { color: #f472b6; }
+.game-reveal .gr-cals.yellow { color: #fb923c; }
+.game-compare { display: flex; justify-content: center; gap: 30px; margin: 16px 0; }
+.game-compare .gcc { text-align: center; }
+.game-compare .gcc-num { font-size: 1.6rem; font-weight: 800; }
+.game-compare .gcc-num.fake { color: #8b6b6b; text-decoration: line-through; }
+.game-compare .gcc-num.real { color: #f87171; }
+.game-compare .gcc-label { font-size: 0.7rem; color: #8b6b6b; margin-top: 2px; }
+.game-diff-badge {
+  display: inline-block; padding: 8px 20px; border-radius: 50px;
+  background: rgba(248,113,113,0.12); color: #f87171; font-weight: 700; font-size: 0.95rem; margin: 8px 0;
+}
+.game-diff-badge.safe { background: rgba(244,114,182,0.12); color: #f472b6; }
+
+/* Game result */
+.game-grade { text-align: center; }
+.grade-circle {
+  width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 900;
+}
+.grade-circle.S { background: linear-gradient(135deg, #f472b6, #f9a8d4); color: #000; }
+.grade-circle.A { background: linear-gradient(135deg, #f472b6, #fb7185); color: #000; }
+.grade-circle.B { background: linear-gradient(135deg, #fb923c, #f97316); color: #000; }
+.grade-circle.C { background: linear-gradient(135deg, #fb923c, #f97316); color: #fff; }
+.grade-circle.D { background: linear-gradient(135deg, #f87171, #ef4444); color: #fff; }
+.game-grade-title { font-size: 1.1rem; font-weight: 700; }
+.game-grade-desc { color: #a08080; font-size: 0.85rem; margin: 4px 0 12px; }
+.game-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 12px 0; }
+.game-stat {
+  background: #fff; border-radius: 12px; padding: 12px; text-align: center;
+  border: 1px solid rgba(244,114,182,0.10);
+  box-shadow: 0 2px 8px rgba(244,114,182,0.04);
+}
+.game-stat .gs-num { font-size: 1.1rem; font-weight: 800; color: #f472b6; }
+.game-stat .gs-label { font-size: 0.7rem; color: #8b6b6b; margin-top: 2px; }
+
+/* ===== P8: End ===== */
+.end-icon { font-size: 3rem; text-align: center; display: block; margin-bottom: 16px; }
+.end-title { font-size: 1.3rem; font-weight: 800; text-align: center; margin-bottom: 12px; }
+.end-source { color: #8b6b6b; font-size: 0.8rem; text-align: center; line-height: 1.8; margin-bottom: 24px; }
+.end-source a { color: #f472b6; text-decoration: none; }
+.end-btn {
+  display: flex; width: 100%; padding: 14px; border-radius: 50px; border: none; font-size: 1rem; font-weight: 700;
+  cursor: pointer; transition: all 0.3s; font-family: inherit; align-items: center; justify-content: center; gap: 8px;
+  margin-bottom: 10px;
+}
+.end-btn:active { transform: scale(0.97); }
+.end-btn-share { background: linear-gradient(135deg, #f472b6, #ec4899); color: #000; }
+.end-btn-replay { background: rgba(0,0,0,0.06); color: #9b6b6b; }
+
+/* ===== Animations ===== */
+.anim-hidden { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16,1,0.3,1); }
+.anim-visible { opacity: 1; transform: translateY(0); }
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.3s; }
+.anim-delay-4 { transition-delay: 0.4s; }
+
+/* Toast */
+.toast {
+  position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); z-index: 999;
+  background: rgba(0,0,0,0.85); color: #fff; padding: 10px 22px; border-radius: 50px;
+  font-size: 0.85rem; white-space: nowrap; pointer-events: none;
+  animation: toastIn 0.3s ease;
+}
+@keyframes toastIn { from { opacity: 0; transform: translateX(-50%) translateY(10px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+
+/* Confetti */
+.confetti-piece {
+  position: fixed; pointer-events: none; z-index: 998;
+  animation: confettiFall 2s ease-out forwards;
+}
+@keyframes confettiFall {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 360px) {
+  .cover-title { font-size: 2rem; }
+  .big-number { font-size: 4rem; }
+  .slide-inner { padding: 30px 16px; }
+  .game-grid { gap: 6px; }
+  .game-card { padding: 10px 8px; }
+}
+@media (min-width: 420px) {
+  .slide-inner { padding: 48px 24px; }
+}
+
+/* ===== WeChat Share Guide Overlay ===== */
+.wx-guide-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.75);
+  display: flex; flex-direction: column; align-items: flex-end;
+  padding: 20px 28px;
+  animation: fadeIn 0.3s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.wx-guide-arrow {
+  font-size: 3rem; margin-top: 8px; margin-right: 20px;
+  animation: wxArrowBounce 1.5s ease-in-out infinite;
+}
+@keyframes wxArrowBounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+.wx-guide-text {
+  color: #fff; font-size: 1.1rem; font-weight: 700; text-align: right;
+  margin-right: 50px; margin-top: 6px; line-height: 1.6;
+}
+.wx-guide-close {
+  margin-top: 24px; margin-right: 50px; padding: 10px 28px;
+  border-radius: 50px; border: none; background: rgba(255,255,255,0.2);
+  color: #fff; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  font-family: inherit;
+}
+
+/* ===== Poster Modal ===== */
+.poster-modal {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 40px 20px;
+  animation: fadeIn 0.3s ease;
+}
+.poster-modal img {
+  max-width: 80vw; max-height: 70vh; border-radius: 16px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.poster-modal .pm-hint {
+  color: rgba(255,255,255,0.8); font-size: 0.85rem; margin-top: 16px;
+  text-align: center; line-height: 1.6;
+}
+.poster-modal .pm-close {
+  margin-top: 12px; padding: 10px 32px; border-radius: 50px;
+  border: none; background: rgba(255,255,255,0.2); color: #fff;
+  font-size: 0.9rem; font-weight: 600; cursor: pointer; font-family: inherit;
+}
+</style>
+</head>
+<body>
+
+<div class="app" id="app">
+
+  <!-- ====== P0: Cover ====== -->
+  <section class="slide" id="s0" data-index="0">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a0-0">
+        <span class="cover-emoji">🥗</span>
+        <h1 class="cover-title">轻食的「热量谎言」</h1>
+        <p class="cover-subtitle">你以为的"轻食"，<br>可能并不轻。</p>
+        <p class="cover-source">上海市消保委 · 60款轻食测评真相</p>
+      </div>
+    </div>
+    <span class="cover-arrow">↓</span>
+  </section>
+
+  <!-- ====== P1: Market Intro ====== -->
+  <section class="slide" id="s1" data-index="1">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a1-0">
+        <span class="market-badge">📊 市场规模</span>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a1-1">
+        <div class="market-stat"><span id="market-num">0</span>亿+</div>
+        <div class="market-unit">2025年中国轻食市场规模</div>
+      </div>
+      <div class="anim-hidden anim-delay-2" id="a1-2">
+        <p class="section-text" style="margin-top:20px">
+          打开外卖APP，"轻食沙拉""低卡减脂餐"铺天盖地。<br>
+          鸡胸肉、藜麦、牛油果、羽衣甘蓝……<br>
+          这些听起来"健康"的名字，让人安心下单。
+        </p>
+      </div>
+      <div class="anim-hidden anim-delay-3" id="a1-3">
+        <p class="market-question">但——你吃的轻食，真的"轻"吗？</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P2: Core Findings ====== -->
+  <section class="slide" id="s2" data-index="2">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a2-0">
+        <span class="section-label">🔍 调查发现</span>
+        <h2 class="section-title">上海市消保委测评60款轻食：<br>热量虚标触目惊心</h2>
+        <p class="section-text">2025年1月，上海市消保委从商超、连锁餐厅、轻食小店购入60款轻食产品（价格18-120元），委托专业实验室检测。</p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a2-1">
+        <div class="big-number-wrap">
+          <div class="big-number" id="num-857">0%</div>
+          <div class="big-number-label">的轻食产品，实测热量<b style="color:#f87171">高于</b>标注值</div>
+        </div>
+      </div>
+      <div class="anim-hidden anim-delay-2" id="a2-2">
+        <div class="chart-container" id="chart-p2"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P3: Extreme Case ====== -->
+  <section class="slide" id="s3" data-index="3">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a3-0">
+        <span class="section-label">🚨 极端案例</span>
+        <h2 class="section-title">标注 275 千卡<br>实测 <b style="color:#f87171">1544 千卡</b></h2>
+        <p class="section-text">一款名为<b>"减脂鸡胸肉藜麦沙拉"</b>的产品，实测热量是标称值的 <b style="color:#f87171">5.61 倍</b>，比一份炸猪排蛋包饭的热量还高。</p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a3-1">
+        <div class="extreme-cards">
+          <div class="extreme-card labeled">
+            <div class="ec-label">📝 标注热量</div>
+            <div class="ec-value">275</div>
+            <div class="ec-unit">千卡 (kcal)</div>
+          </div>
+          <div class="extreme-arrow">→</div>
+          <div class="extreme-card actual">
+            <div class="ec-label">🔬 实测热量</div>
+            <div class="ec-value">1544</div>
+            <div class="ec-unit">千卡 (kcal)</div>
+          </div>
+        </div>
+        <div class="extreme-badge">⚠️ 超标注值 5.6 倍，超过一份炸猪排蛋包饭</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P4: Dressing Trap ====== -->
+  <section class="slide" id="s4" data-index="4">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a4-0">
+        <span class="section-label">🧴 隐形杀手</span>
+        <h2 class="section-title">酱料：你以为的"一点点"</h2>
+        <p class="section-text">40款附带酱料的样品中，酱料贡献了餐食总钠的<b style="color:#f87171">平均 35%</b>。麻酱汁能量可达总能量的 <b style="color:#f87171">15%</b>。</p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a4-1">
+        <div class="dressing-cards">
+          <div class="dressing-card">
+            <span class="dc-emoji">🫒</span>
+            <span class="dc-name">油醋汁</span>
+            <span class="dc-fake">50 kcal</span>
+            <span class="dc-kcal">≈135 kcal</span>
+          </div>
+          <div class="dressing-card">
+            <span class="dc-emoji">🧀</span>
+            <span class="dc-name">凯撒酱</span>
+            <span class="dc-fake">60 kcal</span>
+            <span class="dc-kcal">≈195 kcal</span>
+          </div>
+          <div class="dressing-card">
+            <span class="dc-emoji">🥜</span>
+            <span class="dc-name">芝麻酱</span>
+            <span class="dc-fake">40 kcal</span>
+            <span class="dc-kcal">≈165 kcal</span>
+          </div>
+          <div class="dressing-card">
+            <span class="dc-emoji">🍯</span>
+            <span class="dc-name">蜂蜜芥末</span>
+            <span class="dc-fake">45 kcal</span>
+            <span class="dc-kcal">≈145 kcal</span>
+          </div>
+        </div>
+      </div>
+      <div class="anim-hidden anim-delay-2" id="a4-2">
+        <div class="chart-container" id="chart-p4" style="height:200px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P5: Sodium Warning ====== -->
+  <section class="slide" id="s5" data-index="5">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a5-0">
+        <span class="section-label">🧂 钠含量警示</span>
+        <h2 class="section-title">88% 的样品，钠含量超标</h2>
+        <p class="section-text">60款样品中，<b style="color:#fb923c">53款</b>钠含量超过午餐适宜摄入量（600mg）。极端案例的藜麦沙拉钠含量高达 <b style="color:#f87171">2880mg</b>——一餐就超过全天建议摄入量。</p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a5-1">
+        <div class="gauge-container" id="chart-p5"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P6: Industry + Tips ====== -->
+  <section class="slide" id="s6" data-index="6">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a6-0">
+        <span class="section-label">💡 为什么？怎么办？</span>
+        <h2 class="section-title">行业缺乏统一标准</h2>
+        <p class="section-text">轻食领域至今没有强制性国家标准。虽有团体标准 T/CAA 025-2022《轻食营养配餐指南》，但参与企业寥寥。各品牌自行定义"轻食"，部分商家甚至在轻食中添加油炸薯条、起酥面包等高热量食材。</p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a6-1">
+        <h3 style="font-size:1rem;font-weight:700;margin:20px 0 12px;color:#f472b6">🛡️ 5 条避坑指南</h3>
+        <div class="tips-list">
+          <div class="tip-item"><span class="tip-num">1</span><span class="tip-text"><b>酱料分装</b>，自己控制用量——酱料是最大的隐藏热量来源</span></div>
+          <div class="tip-item"><span class="tip-num">2</span><span class="tip-text"><b>警惕"健康"高热量食材</b>：牛油果、坚果碎、芝士碎热量密度极高</span></div>
+          <div class="tip-item"><span class="tip-num">3</span><span class="tip-text"><b>选择有完整营养标签的品牌</b>——标注越详细，越可信</span></div>
+          <div class="tip-item"><span class="tip-num">4</span><span class="tip-text"><b>轻食不等于低卡</b>——关注食材搭配，而非只看"轻食"二字</span></div>
+          <div class="tip-item"><span class="tip-num">5</span><span class="tip-text"><b>多蛋白质、多蔬菜、少酱料、少精制碳水</b></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== P7: Game ====== -->
+  <section class="slide game-slide" id="s7" data-index="7">
+    <div class="slide-inner" style="padding-top:24px;padding-bottom:24px">
+      <div class="game-header">
+        <span class="gh-icon">🎮</span>
+        <div class="gh-title">亲自搭配，看看真相</div>
+        <div class="gh-sub">选一份你的轻食，对比标注 vs 真实热量</div>
+      </div>
+
+      <!-- Game State: SELECT -->
+      <div class="game-state" id="game-select">
+        <div class="game-progress" id="game-progress"></div>
+        <div class="game-cats" id="game-cats"></div>
+        <div class="game-grid" id="game-grid"></div>
+        <div class="game-bottom">
+          <div class="game-selected-tags" id="game-tags"></div>
+          <button class="game-btn" id="game-confirm-btn" disabled onclick="gameConfirm()">
+            请完成所有食材选择
+          </button>
+        </div>
+      </div>
+
+      <!-- Game State: REVEAL -->
+      <div class="game-state game-state-hidden" id="game-reveal-state"></div>
+
+      <!-- Game State: RESULT -->
+      <div class="game-state game-state-hidden" id="game-result-state"></div>
+    </div>
+  </section>
+
+  <!-- ====== P8: End ====== -->
+  <section class="slide" id="s8" data-index="8">
+    <div class="slide-inner">
+      <div class="anim-hidden" id="a8-0">
+        <span class="end-icon">📰</span>
+        <h2 class="end-title">数据来源</h2>
+        <p class="end-source">
+          上海市消费者权益保护委员会<br>
+          《60款轻食样品调查结果》<br>2025年1月3日发布<br>
+          <a href="https://www.thepaper.cn/newsDetail_forward_29835875" target="_blank">澎湃新闻报道 →</a>
+        </p>
+      </div>
+      <div class="anim-hidden anim-delay-1" id="a8-1">
+        <button class="end-btn end-btn-share" onclick="handleShare()">📤 分享给朋友</button>
+        <button class="end-btn end-btn-replay" onclick="scrollToSlide(0)">🔄 再看一遍</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Dot Indicator -->
+<div class="dot-indicator" id="dot-indicator"></div>
+
+<script>
+// ==================== 环境检测 ====================
+const isWechat = /micromessenger/i.test(navigator.userAgent);
+
+// ==================== SCROLL & SLIDE TRACKING ====================
+const app = document.getElementById('app');
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let currentSlide = 0;
+let isScrolling = false;
+
+// Build dot indicator
+const dotIndicator = document.getElementById('dot-indicator');
+for (let i = 0; i < totalSlides; i++) {
+  const dot = document.createElement('div');
+  dot.className = 'dot' + (i === 0 ? ' active' : '');
+  dot.dataset.index = i;
+  dot.addEventListener('click', () => scrollToSlide(i));
+  dotIndicator.appendChild(dot);
+}
+
+function updateDots(index) {
+  document.querySelectorAll('.dot').forEach((d, i) => {
+    d.classList.toggle('active', i === index);
+  });
+}
+
+function scrollToSlide(index) {
+  const target = slides[Math.max(0, Math.min(totalSlides - 1, index))];
+  if (target) target.scrollIntoView({ behavior: 'smooth' });
+}
+
+// Detect which slide is in view
+function getCurrentSlideIndex() {
+  const appRect = app.getBoundingClientRect();
+  const appCenter = appRect.top + appRect.height / 2;
+  let closest = 0;
+  let minDist = Infinity;
+  slides.forEach((s, i) => {
+    const rect = s.getBoundingClientRect();
+    const center = rect.top + rect.height / 2;
+    const dist = Math.abs(center - appCenter);
+    if (dist < minDist) { minDist = dist; closest = i; }
+  });
+  return closest;
+}
+
+// Intersection Observer for slide animations
+const animObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const slideEl = entry.target;
+      const slideIdx = parseInt(slideEl.dataset.index);
+      currentSlide = slideIdx;
+      updateDots(slideIdx);
+
+      // Trigger animations within this slide
+      const animEls = slideEl.querySelectorAll('.anim-hidden');
+      animEls.forEach(el => el.classList.add('anim-visible'));
+
+      // Initialize charts when slide comes into view
+      if (slideIdx === 2) initChartP2();
+      if (slideIdx === 4) initChartP4();
+      if (slideIdx === 5) initChartP5();
+
+      // Market number animation (P1)
+      if (slideIdx === 1) animateMarketNum();
+    }
+  });
+}, { threshold: 0.5 });
+
+slides.forEach(s => animObserver.observe(s));
+
+// ==================== COUNT-UP ANIMATION ====================
+function countUp(el, from, to, duration, suffix = '') {
+  const start = performance.now();
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const val = Math.round(from + (to - from) * eased);
+    el.textContent = val + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+// P1: Market number
+let marketAnimated = false;
+function animateMarketNum() {
+  if (marketAnimated) return;
+  marketAnimated = true;
+  const el = document.getElementById('market-num');
+  if (el) countUp(el, 0, 1200, 2000, '');
+}
+
+// P2: 85.7% number
+let p2Animated = false;
+function animateP2Num() {
+  if (p2Animated) return;
+  p2Animated = true;
+  const el = document.getElementById('num-857');
+  if (el) {
+    const start = performance.now();
+    const duration = 1800;
+    function update(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const val = (eased * 85.7).toFixed(1);
+      el.textContent = val + '%';
+      if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  }
+}
+
+// ==================== ECHARTS ====================
+const chartInstances = {};
+
+function getChartDom(id) {
+  return document.getElementById(id);
+}
+
+// Safety check: ensure echarts is loaded
+function ensureEcharts() {
+  return typeof echarts !== 'undefined';
+}
+
+// P2: Horizontal bar chart — labeled vs actual
+function initChartP2() {
+  if (!ensureEcharts() || chartInstances['p2']) return;
+  const dom = getChartDom('chart-p2');
+  if (!dom || dom.offsetParent === null) return;
+  chartInstances['p2'] = echarts.init(dom);
+
+  const samples = [
+    { name: '减脂鸡胸藜麦沙拉', labeled: 275, actual: 1544 },
+    { name: '牛油果鲜虾沙拉', labeled: 320, actual: 480 },
+    { name: '凯撒鸡肉卷', labeled: 380, actual: 620 },
+    { name: '日式荞麦面沙拉', labeled: 290, actual: 510 },
+    { name: '地中海能量碗', labeled: 420, actual: 680 },
+    { name: '泰式鸡胸沙拉', labeled: 350, actual: 540 },
+  ];
+
+  const option = {
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'axis',
+      axisPointer: { type: 'shadow' },
+      backgroundColor: 'rgba(255,255,255,0.95)',
+      borderColor: 'rgba(0,0,0,0.08)',
+      textStyle: { color: '#4a3030', fontSize: 12 }
+    },
+    legend: {
+      data: ['标注热量', '实测热量'],
+      bottom: 0,
+      textStyle: { color: '#888', fontSize: 10 },
+      itemWidth: 12, itemHeight: 8
+    },
+    grid: { left: 100, right: 20, top: 10, bottom: 30 },
+    xAxis: {
+      type: 'value',
+      axisLabel: { color: '#666', fontSize: 10, formatter: '{value}' },
+      splitLine: { lineStyle: { color: 'rgba(0,0,0,0.04)' } },
+      name: 'kcal',
+      nameTextStyle: { color: '#555', fontSize: 10 }
+    },
+    yAxis: {
+      type: 'category',
+      data: samples.map(s => s.name),
+      axisLabel: { color: '#aaa', fontSize: 9, width: 90, overflow: 'truncate' },
+      axisLine: { lineStyle: { color: 'rgba(0,0,0,0.06)' } }
+    },
+    series: [
+      {
+        name: '标注热量',
+        type: 'bar',
+        data: samples.map(s => s.labeled),
+        itemStyle: { color: 'rgba(0,0,0,0.12)', borderRadius: [0, 3, 3, 0] },
+        barWidth: 10,
+        label: { show: true, position: 'right', color: '#666', fontSize: 8, formatter: '{c}' }
+      },
+      {
+        name: '实测热量',
+        type: 'bar',
+        data: samples.map(s => s.actual),
+        itemStyle: { color: '#f87171', borderRadius: [0, 3, 3, 0] },
+        barWidth: 10,
+        label: { show: true, position: 'right', color: '#f87171', fontSize: 8, formatter: '{c}' }
+      }
+    ]
+  };
+  chartInstances['p2'].setOption(option);
+  animateP2Num();
+}
+
+// P4: Pie chart — dressing contribution
+function initChartP4() {
+  if (!ensureEcharts() || chartInstances['p4']) return;
+  const dom = getChartDom('chart-p4');
+  if (!dom || dom.offsetParent === null) return;
+  chartInstances['p4'] = echarts.init(dom);
+
+  const option = {
+    backgroundColor: 'transparent',
+    tooltip: {
+      trigger: 'item',
+      backgroundColor: 'rgba(255,255,255,0.95)',
+      borderColor: 'rgba(0,0,0,0.08)',
+      textStyle: { color: '#4a3030', fontSize: 12 },
+      formatter: '{b}: {c} kcal ({d}%)'
+    },
+    series: [{
+      type: 'pie',
+      radius: ['55%', '80%'],
+      center: ['50%', '50%'],
+      itemStyle: { borderRadius: 6, borderColor: '#0a0e14', borderWidth: 3 },
+      label: { color: '#aaa', fontSize: 10 },
+      emphasis: { label: { fontSize: 14, fontWeight: 'bold' } },
+      data: [
+        { value: 330, name: '主食基底', itemStyle: { color: '#f472b6' } },
+        { value: 280, name: '蛋白质', itemStyle: { color: '#fb7185' } },
+        { value: 60, name: '蔬菜', itemStyle: { color: '#f9a8d4' } },
+        { value: 195, name: '酱料（实际）', itemStyle: { color: '#f87171' } },
+        { value: 95, name: '加料', itemStyle: { color: '#fb923c' } }
+      ]
+    }]
+  };
+  chartInstances['p4'].setOption(option);
+}
+
+// P5: Gauge chart — sodium
+function initChartP5() {
+  if (!ensureEcharts() || chartInstances['p5']) return;
+  const dom = getChartDom('chart-p5');
+  if (!dom || dom.offsetParent === null) return;
+  chartInstances['p5'] = echarts.init(dom);
+
+  const option = {
+    backgroundColor: 'transparent',
+    series: [{
+      type: 'gauge',
+      startAngle: 210, endAngle: -30,
+      center: ['50%', '55%'],
+      radius: '85%',
+      min: 0, max: 3000,
+      splitNumber: 6,
+      axisLine: {
+        show: true,
+        lineStyle: {
+          width: 20,
+          color: [
+            [0.2, '#f472b6'],
+            [0.4, '#f9a8d4'],
+            [0.6, '#fb923c'],
+            [0.8, '#f97316'],
+            [1, '#f87171']
+          ]
+        }
+      },
+      pointer: { length: '60%', width: 6, itemStyle: { color: '#fff' } },
+      axisTick: { distance: -20, length: 6, lineStyle: { color: '#555', width: 1 } },
+      splitLine: { distance: -24, length: 14, lineStyle: { color: '#555', width: 2 } },
+      axisLabel: { color: '#888', fontSize: 10, distance: 30, formatter: '{value}' },
+      anchor: { show: true, size: 15, itemStyle: { color: '#fff' } },
+      title: { offsetCenter: [0, '75%'], color: '#aaa', fontSize: 12 },
+      detail: {
+        valueAnimation: true,
+        fontSize: 28,
+        fontWeight: 'bold',
+        color: '#f87171',
+        offsetCenter: [0, '50%'],
+        formatter: '{value} mg'
+      },
+      data: [{ value: 2880, name: '极端案例钠含量' }]
+    }]
+  };
+  chartInstances['p5'].setOption(option);
+}
+
+// Handle ECharts resize
+window.addEventListener('resize', () => {
+  Object.values(chartInstances).forEach(c => { try { c.resize(); } catch(e) {} });
+});
+
+// Re-draw charts on slide change (in case of race conditions)
+const chartSlideMap = { 2: initChartP2, 4: initChartP4, 5: initChartP5 };
+app.addEventListener('scroll', () => {
+  clearTimeout(app._scrollTimeout);
+  app._scrollTimeout = setTimeout(() => {
+    const idx = getCurrentSlideIndex();
+    if (idx !== currentSlide) {
+      currentSlide = idx;
+      updateDots(idx);
+      if (chartSlideMap[idx]) chartSlideMap[idx]();
+      if (idx === 1) animateMarketNum();
+    }
+  }, 150);
+}, { passive: true });
+
+// ==================== GAME LOGIC (P7) ====================
+const CATEGORIES = [
+  { id: 'base', name: '基底/主食', emoji: '🍚', min: 1, max: 1, hint: '选 1 种' },
+  { id: 'protein', name: '蛋白质', emoji: '🍗', min: 1, max: 2, hint: '选 1-2 种' },
+  { id: 'veggie', name: '蔬菜', emoji: '🥬', min: 2, max: 4, hint: '选 2-4 种' },
+  { id: 'dressing', name: '酱料', emoji: '🧴', min: 0, max: 1, hint: '选 0-1 种' },
+  { id: 'extra', name: '加料', emoji: '✨', min: 0, max: 2, hint: '选 0-2 种' },
+];
+
+const INGREDIENTS = {
+  base: [
+    { id:'b1', name:'糙米饭', emoji:'🍚', labeled:150, actual:200 },
+    { id:'b2', name:'藜麦', emoji:'🌾', labeled:120, actual:160 },
+    { id:'b3', name:'荞麦面', emoji:'🍜', labeled:130, actual:180 },
+    { id:'b4', name:'紫薯泥', emoji:'🍠', labeled:100, actual:145 },
+    { id:'b5', name:'全麦面包', emoji:'🍞', labeled:80, actual:135 },
+    { id:'b6', name:'杂粮饭', emoji:'🍙', labeled:140, actual:195 },
+  ],
+  protein: [
+    { id:'p1', name:'鸡胸肉', emoji:'🍗', labeled:120, actual:125 },
+    { id:'p2', name:'三文鱼', emoji:'🐟', labeled:150, actual:215 },
+    { id:'p3', name:'虾仁', emoji:'🦐', labeled:80, actual:98 },
+    { id:'p4', name:'牛肉片', emoji:'🥩', labeled:180, actual:265 },
+    { id:'p5', name:'鸡蛋', emoji:'🥚', labeled:70, actual:78 },
+    { id:'p6', name:'豆腐', emoji:'🫘', labeled:50, actual:58 },
+  ],
+  veggie: [
+    { id:'v1', name:'生菜', emoji:'🥬', labeled:10, actual:12 },
+    { id:'v2', name:'西兰花', emoji:'🥦', labeled:30, actual:36 },
+    { id:'v3', name:'小番茄', emoji:'🍅', labeled:20, actual:22 },
+    { id:'v4', name:'玉米粒', emoji:'🌽', labeled:60, actual:98 },
+    { id:'v5', name:'黄瓜', emoji:'🥒', labeled:10, actual:11 },
+    { id:'v6', name:'紫甘蓝', emoji:'🟣', labeled:15, actual:18 },
+    { id:'v7', name:'胡萝卜', emoji:'🥕', labeled:20, actual:24 },
+    { id:'v8', name:'菠菜', emoji:'🥗', labeled:15, actual:17 },
+  ],
+  dressing: [
+    { id:'d0', name:'不选酱料', emoji:'✖️', labeled:0, actual:0 },
+    { id:'d1', name:'油醋汁', emoji:'🫒', labeled:50, actual:135 },
+    { id:'d2', name:'凯撒酱', emoji:'🧀', labeled:60, actual:195 },
+    { id:'d3', name:'芝麻酱', emoji:'🥜', labeled:40, actual:165 },
+    { id:'d4', name:'蜂蜜芥末酱', emoji:'🍯', labeled:45, actual:145 },
+  ],
+  extra: [
+    { id:'e1', name:'牛油果', emoji:'🥑', labeled:80, actual:168 },
+    { id:'e2', name:'坚果碎', emoji:'🥜', labeled:70, actual:158 },
+    { id:'e3', name:'芝士碎', emoji:'🧀', labeled:60, actual:128 },
+    { id:'e4', name:'蔓越莓干', emoji:'🫐', labeled:50, actual:108 },
+    { id:'e5', name:'面包丁', emoji:'🍞', labeled:40, actual:95 },
+  ],
+};
+
+let gameCatIndex = 0;
+let gameSelected = {};
+
+function initGameSelected() {
+  const s = {};
+  CATEGORIES.forEach(c => { s[c.id] = []; });
+  return s;
+}
+
+function gameGetCount() {
+  return Object.values(gameSelected).reduce((sum, arr) => sum + arr.length, 0);
+}
+
+function gameIsCatComplete(catId) {
+  const cat = CATEGORIES.find(c => c.id === catId);
+  const count = gameSelected[catId].length;
+  return count >= cat.min && count <= cat.max;
+}
+
+function gameIsAllComplete() {
+  return CATEGORIES.every(c => gameIsCatComplete(c.id));
+}
+
+function gameGetLabeled() {
+  let t = 0;
+  Object.values(gameSelected).forEach(arr => arr.forEach(ing => { t += ing.labeled; }));
+  return t;
+}
+
+function gameGetActual() {
+  let t = 0;
+  Object.values(gameSelected).forEach(arr => arr.forEach(ing => { t += ing.actual; }));
+  return t;
+}
+
+function gameRenderProgress() {
+  const wrap = document.getElementById('game-progress');
+  const done = CATEGORIES.filter(c => gameIsCatComplete(c.id)).length;
+  const pct = (done / CATEGORIES.length) * 100;
+  wrap.innerHTML = `
+    <div class="game-progress-bar"><div class="game-progress-fill" style="width:${pct}%"></div></div>
+    <div class="game-progress-steps">
+      ${CATEGORIES.map((c, i) => {
+        let cls = '';
+        if (gameIsCatComplete(c.id)) cls = 'done';
+        else if (i === gameCatIndex) cls = 'current';
+        return `<span class="game-step ${cls}">${c.emoji}</span>`;
+      }).join('')}
+    </div>`;
+}
+
+function gameRenderCats() {
+  const container = document.getElementById('game-cats');
+  container.innerHTML = CATEGORIES.map((c, i) => {
+    let cls = 'game-cat';
+    if (i === gameCatIndex) cls += ' active';
+    const done = gameIsCatComplete(c.id);
+    const count = gameSelected[c.id].length;
+    return `<button class="${cls}" onclick="gameSwitchCat(${i})">
+      ${c.emoji} ${c.name}
+      <span style="font-size:0.6rem;margin-left:3px;color:${done?'#f472b6':'#555'}">${count}/${c.max}${done?' ✓':''}</span>
+    </button>`;
+  }).join('');
+}
+
+function gameRenderGrid() {
+  const cat = CATEGORIES[gameCatIndex];
+  const items = INGREDIENTS[cat.id];
+  const grid = document.getElementById('game-grid');
+  const sel = gameSelected[cat.id];
+  const atMax = sel.length >= cat.max;
+
+  grid.innerHTML = items.map(item => {
+    const isSel = sel.some(s => s.id === item.id);
+    const disabled = !isSel && atMax;
+    let cls = 'game-card';
+    if (isSel) cls += ' selected';
+    return `
+      <div class="${cls}" onclick="${disabled ? '' : `gameToggle('${cat.id}','${item.id}')`}">
+        <div class="gc-check">✓</div>
+        <span class="gc-emoji">${item.emoji}</span>
+        <div class="gc-name">${item.name}</div>
+        <div class="gc-hint">标注 ${item.labeled} kcal</div>
+      </div>`;
+  }).join('');
+}
+
+function gameToggle(catId, itemId) {
+  const cat = CATEGORIES.find(c => c.id === catId);
+  const items = INGREDIENTS[catId];
+  const item = items.find(i => i.id === itemId);
+  if (!item) return;
+
+  const arr = gameSelected[catId];
+  const idx = arr.findIndex(s => s.id === itemId);
+
+  if (idx >= 0) {
+    arr.splice(idx, 1);
+  } else {
+    if (arr.length >= cat.max) return;
+    if (catId === 'dressing' && itemId === 'd0') {
+      gameSelected[catId] = [item];
+    } else if (catId === 'dressing') {
+      gameSelected[catId] = arr.filter(s => s.id !== 'd0');
+      gameSelected[catId].push(item);
+    } else {
+      arr.push(item);
+    }
+  }
+
+  gameRefreshUI();
+  if (navigator.vibrate) navigator.vibrate(10);
+}
+
+function gameSwitchCat(index) {
+  gameCatIndex = index;
+  gameRefreshUI();
+}
+
+function gameRefreshUI() {
+  gameRenderCats();
+  gameRenderGrid();
+  gameRenderProgress();
+  gameUpdateBottom();
+}
+
+function gameUpdateBottom() {
+  const tags = document.getElementById('game-tags');
+  const btn = document.getElementById('game-confirm-btn');
+  const count = gameGetCount();
+  const allItems = [];
+  Object.values(gameSelected).forEach(arr => arr.forEach(ing => allItems.push(ing)));
+  tags.innerHTML = allItems.map(ing =>
+    `<span class="game-tag">${ing.emoji} ${ing.name}</span>`
+  ).join('');
+
+  if (gameIsAllComplete()) {
+    btn.className = 'game-btn ready';
+    btn.disabled = false;
+    btn.textContent = '🔍 查看真实热量 →';
+  } else {
+    btn.className = 'game-btn';
+    btn.disabled = true;
+    const cat = CATEGORIES[gameCatIndex];
+    const cur = gameSelected[cat.id].length;
+    if (cur < cat.min) {
+      btn.textContent = `还需选择至少 ${cat.min - cur} 种${cat.name}`;
+    } else {
+      btn.textContent = '请完成所有分类选择';
+    }
+  }
+}
+
+function gameConfirm() {
+  if (!gameIsAllComplete()) {
+    for (let i = 0; i < CATEGORIES.length; i++) {
+      if (!gameIsCatComplete(CATEGORIES[i].id)) { gameSwitchCat(i); break; }
+    }
+    return;
+  }
+  showGameReveal();
+}
+
+function showGameReveal() {
+  document.getElementById('game-select').classList.add('game-state-hidden');
+  const revealEl = document.getElementById('game-reveal-state');
+  revealEl.classList.remove('game-state-hidden');
+  document.getElementById('game-result-state').classList.add('game-state-hidden');
+
+  const labeled = gameGetLabeled();
+  const actual = gameGetActual();
+  const diff = actual - labeled;
+  const diffPct = Math.round((diff / labeled) * 100);
+  const allItems = [];
+  Object.entries(gameSelected).forEach(([catId, arr]) => {
+    arr.forEach(ing => {
+      allItems.push({ ...ing, catName: CATEGORIES.find(c => c.id === catId).name });
+    });
+  });
+
+  let calClass = 'green';
+  if (actual > 600) calClass = '';
+  else if (actual > 400) calClass = 'yellow';
+
+  let badgeClass = 'safe';
+  let emoji = '😱';
+  if (diffPct <= 10) { badgeClass = 'safe'; emoji = '😊'; }
+  else if (diffPct <= 30) { emoji = '😯'; }
+  else if (diffPct <= 50) { emoji = '😨'; }
+
+  revealEl.innerHTML = `
+    <div class="game-reveal">
+      <span class="gr-bowl">🥗</span>
+      <div class="gr-label">你的轻食 <b>真实热量</b></div>
+      <div class="gr-cals ${calClass}" id="game-cals-counter">0</div>
+      <div style="color:#666;font-size:0.8rem">千卡 (kcal)</div>
+      <div class="game-compare">
+        <div class="gcc"><div class="gcc-num fake">${labeled}</div><div class="gcc-label">标注热量</div></div>
+        <div style="display:flex;align-items:center;font-size:1.2rem;color:#555">→</div>
+        <div class="gcc"><div class="gcc-num real">${actual}</div><div class="gcc-label">真实热量</div></div>
+      </div>
+      <div class="game-diff-badge ${badgeClass}">${emoji} 比标注值高出 <b>${diff}</b> kcal (+${diffPct}%)</div>
+      <button class="game-btn ready" onclick="showGameResult()" style="margin-top:12px">📊 查看我的评级 →</button>
+      <button class="game-btn" onclick="gameRestart()" style="margin-top:6px">🔄 重新搭配</button>
+    </div>`;
+
+  setTimeout(() => {
+    const el = document.getElementById('game-cals-counter');
+    if (el) countUp(el, 0, actual, 1500, '');
+  }, 300);
+}
+
+function showGameResult() {
+  document.getElementById('game-select').classList.add('game-state-hidden');
+  document.getElementById('game-reveal-state').classList.add('game-state-hidden');
+  const resultEl = document.getElementById('game-result-state');
+  resultEl.classList.remove('game-state-hidden');
+
+  const actual = gameGetActual();
+  const labeled = gameGetLabeled();
+  const diffPct = Math.round(((actual - labeled) / labeled) * 100);
+  const allItems = [];
+  Object.values(gameSelected).forEach(arr => arr.forEach(ing => allItems.push(ing)));
+
+  const hasProtein = gameSelected.protein.length >= 1;
+  const hasVeggie = gameSelected.veggie.length >= 2;
+  const hasBase = gameSelected.base.length >= 1;
+  const noDressing = gameSelected.dressing.length === 0 || (gameSelected.dressing.length === 1 && gameSelected.dressing[0].id === 'd0');
+  const balanced = hasProtein && hasVeggie && hasBase;
+
+  let score = 100;
+  if (actual < 250) score -= 20;
+  else if (actual < 400) score += 10;
+  else if (actual > 600) score -= 30;
+  else if (actual > 500) score -= 15;
+  if (balanced) score += 15;
+  if (noDressing) score += 15;
+  if (diffPct > 50) score -= 20;
+  else if (diffPct > 30) score -= 10;
+
+  let grade, gradeTitle, gradeDesc;
+  if (score >= 95) { grade='S'; gradeTitle='轻食大师'; gradeDesc='搭配堪称完美！低卡均衡。'; }
+  else if (score >= 80) { grade='A'; gradeTitle='健康达人'; gradeDesc='很不错，热量控制得当。'; }
+  else if (score >= 60) { grade='B'; gradeTitle='轻食新手'; gradeDesc='还有优化空间，注意酱料！'; }
+  else if (score >= 40) { grade='C'; gradeTitle='热量超标'; gradeDesc='这份轻食热量接近正餐了…'; }
+  else { grade='D'; gradeTitle='需要加油'; gradeDesc='这份"轻食"一点也不轻！'; }
+
+  resultEl.innerHTML = `
+    <div class="game-grade">
+      <div class="grade-circle ${grade}">${grade}</div>
+      <div class="game-grade-title">${gradeTitle}</div>
+      <div class="game-grade-desc">${gradeDesc}</div>
+    </div>
+    <div class="game-stats">
+      <div class="game-stat"><div class="gs-num">${actual}</div><div class="gs-label">真实热量 / kcal</div></div>
+      <div class="game-stat"><div class="gs-num" style="color:#f87171">+${diffPct}%</div><div class="gs-label">热量虚标比例</div></div>
+      <div class="game-stat"><div class="gs-num">${balanced?'✅':'⚠️'}</div><div class="gs-label">营养均衡度</div></div>
+      <div class="game-stat"><div class="gs-num">${noDressing?'🎉':'💡'}</div><div class="gs-label">酱料陷阱规避</div></div>
+    </div>
+    <button class="game-btn ready" onclick="shareGameResult()" style="margin-top:10px">${isWechat ? '📸 生成分享海报' : '📤 分享成绩'}</button>
+    <button class="game-btn" onclick="gameRestart()" style="margin-top:6px">🔄 重新搭配</button>
+  `;
+
+  spawnConfetti();
+}
+
+function gameRestart() {
+  gameSelected = initGameSelected();
+  gameCatIndex = 0;
+  document.getElementById('game-select').classList.remove('game-state-hidden');
+  document.getElementById('game-reveal-state').classList.add('game-state-hidden');
+  document.getElementById('game-result-state').classList.add('game-state-hidden');
+  gameRefreshUI();
+}
+
+function shareGameResult() {
+  const actual = gameGetActual();
+  const labeled = gameGetLabeled();
+  const diffPct = Math.round(((actual - labeled) / labeled) * 100);
+
+  if (isWechat) {
+    // 微信内：先尝试生成海报，失败则显示引导
+    showPoster(actual, labeled, diffPct);
+    return;
+  }
+
+  const text = `🥗 我在「轻食热量大揭秘」搭配了一份轻食！\n📊 标注：${labeled} kcal\n🔥 真实：${actual} kcal (+${diffPct}%)\n👉 你也来试试！`;
+  if (navigator.share) {
+    navigator.share({ title: '轻食热量大揭秘', text, url: window.location.href }).catch(() => copyText(text + ' ' + window.location.href));
+  } else {
+    copyText(text + ' ' + window.location.href);
+  }
+}
+
+// ==================== CONFETTI ====================
+function spawnConfetti() {
+  const colors = ['#f472b6','#f9a8d4','#fb923c','#f87171','#60a5fa','#c084fc','#fb923c','#fb7185'];
+  for (let i = 0; i < 50; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.cssText = `
+      width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;
+      left:${Math.random()*100}%;top:${-(Math.random()*20)}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      animation-delay:${Math.random()*0.8}s;
+      animation-duration:${1.5+Math.random()*2}s;
+    `;
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 3500);
+  }
+}
+
+// ==================== SHARE / TOAST ====================
+function copyText(text) {
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => showToast('✅ 已复制链接，去发给好友吧！'));
+  } else {
+    showToast('📤 请截图分享给好友吧！');
+  }
+}
+
+function showToast(msg) {
+  const existing = document.querySelector('.toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.textContent = msg;
+  document.body.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transition = 'opacity 0.5s'; }, 2000);
+  setTimeout(() => toast.remove(), 2500);
+}
+
+// ==================== WECHAT SHARE GUIDE ====================
+function showWxGuide() {
+  const existing = document.querySelector('.wx-guide-overlay');
+  if (existing) return;
+
+  const overlay = document.createElement('div');
+  overlay.className = 'wx-guide-overlay';
+  overlay.innerHTML = `
+    <span class="wx-guide-arrow">↗️</span>
+    <p class="wx-guide-text">点击右上角「···」<br>分享给朋友 或 分享到朋友圈</p>
+    <button class="wx-guide-close" onclick="this.parentElement.remove()">我知道了</button>
+  `;
+  overlay.addEventListener('click', function(e) {
+    if (e.target === overlay) overlay.remove();
+  });
+  document.body.appendChild(overlay);
+}
+
+// ==================== CANVAS POSTER ====================
+// Canvas 圆角矩形辅助（兼容不支持 roundRect 的旧浏览器）
+function roundRect(ctx, x, y, w, h, r) {
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + w - r, y);
+  ctx.arcTo(x + w, y, x + w, y + r, r);
+  ctx.lineTo(x + w, y + h - r);
+  ctx.arcTo(x + w, y + h, x + w - r, y + h, r);
+  ctx.lineTo(x + r, y + h);
+  ctx.arcTo(x, y + h, x, y + h - r, r);
+  ctx.lineTo(x, y + r);
+  ctx.arcTo(x, y, x + r, y, r);
+  ctx.closePath();
+}
+
+function showPoster(actual, labeled, diffPct) {
+  // 获取当前评级信息（从 DOM 读取）
+  const gradeCircle = document.querySelector('.grade-circle');
+  const gradeTitle = document.querySelector('.game-grade-title');
+  const gradeDesc = document.querySelector('.game-grade-desc');
+  const gradeText = gradeCircle ? gradeCircle.textContent : '?';
+  const titleText = gradeTitle ? gradeTitle.textContent : '';
+  const descText = gradeDesc ? gradeDesc.textContent : '';
+
+  // 创建 Canvas
+  const canvas = document.createElement('canvas');
+  const w = 750;
+  const h = 1334;
+  canvas.width = w;
+  canvas.height = h;
+  const ctx = canvas.getContext('2d');
+
+  // 背景渐变
+  const bg = ctx.createLinearGradient(0, 0, 0, h);
+  bg.addColorStop(0, '#ffeef2');
+  bg.addColorStop(0.4, '#fff5f5');
+  bg.addColorStop(0.8, '#fef0f5');
+  bg.addColorStop(1, '#ffeef2');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, w, h);
+
+  // 顶部装饰线
+  ctx.fillStyle = '#f472b6';
+  ctx.fillRect(0, 0, w, 6);
+
+  // 标题
+  ctx.fillStyle = '#4a3030';
+  ctx.font = 'bold 42px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('轻食热量大揭秘', 375, 110);
+
+  // 副标题
+  ctx.fillStyle = '#9b7070';
+  ctx.font = '24px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('我的轻食搭配结果', 375, 155);
+
+  // 评级圆圈
+  const gradeColors = {
+    'S': ['#f472b6', '#f9a8d4'],
+    'A': ['#f472b6', '#fb7185'],
+    'B': ['#fb923c', '#f97316'],
+    'C': ['#fb923c', '#f97316'],
+    'D': ['#f87171', '#ef4444'],
+  };
+  const colors = gradeColors[gradeText] || ['#f472b6', '#f472b6'];
+  const gc = ctx.createRadialGradient(375, 270, 10, 375, 270, 70);
+  gc.addColorStop(0, colors[1]);
+  gc.addColorStop(1, colors[0]);
+  ctx.fillStyle = gc;
+  ctx.beginPath();
+  ctx.arc(375, 270, 70, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 64px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText(gradeText, 375, 290);
+
+  // 评级标题
+  ctx.fillStyle = '#3a2020';
+  ctx.font = 'bold 36px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText(titleText, 375, 390);
+
+  // 评级描述
+  ctx.fillStyle = '#8b6060';
+  ctx.font = '22px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText(descText, 375, 428);
+
+  // 分隔线
+  ctx.strokeStyle = 'rgba(244,114,182,0.2)';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(100, 470);
+  ctx.lineTo(650, 470);
+  ctx.stroke();
+
+  // 热量对比
+  ctx.fillStyle = '#9b7070';
+  ctx.font = '22px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('热量真相', 375, 520);
+
+  // 标注热量（划线假数据）
+  ctx.fillStyle = '#8b6b6b';
+  ctx.font = 'bold 40px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText(labeled + ' kcal', 220, 590);
+  ctx.fillStyle = '#999';
+  ctx.font = '20px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('标注热量', 220, 620);
+
+  // 划线（删除线效果）
+  ctx.strokeStyle = '#aaa';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(140, 598);
+  ctx.lineTo(300, 598);
+  ctx.stroke();
+
+  // 箭头
+  ctx.fillStyle = '#f87171';
+  ctx.font = '36px sans-serif';
+  ctx.fillText('→', 375, 605);
+
+  // 实测热量
+  ctx.fillStyle = '#f87171';
+  ctx.font = 'bold 48px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText(actual + ' kcal', 530, 590);
+  ctx.fillStyle = '#555';
+  ctx.font = '20px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('真实热量', 530, 620);
+
+  // 虚标比例
+  const diffBadgeY = 665;
+  ctx.fillStyle = 'rgba(248,113,113,0.12)';
+  const badgeWidth = 360;
+  const badgeX = (750 - badgeWidth) / 2;
+  roundRect(ctx, badgeX, diffBadgeY - 24, badgeWidth, 44, 22);
+  ctx.fill();
+  ctx.fillStyle = '#f87171';
+  ctx.font = 'bold 26px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('😱 比标注值高出 +' + diffPct + '%', 375, diffBadgeY + 10);
+
+  // 底部信息区
+  const infoY = 760;
+  ctx.fillStyle = '#fff';
+  ctx.strokeStyle = 'rgba(244,114,182,0.08)';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  roundRect(ctx, 80, infoY, 590, 200, 20);
+  ctx.fill();
+  ctx.stroke();
+
+  ctx.fillStyle = '#3a2020';
+  ctx.font = 'bold 30px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('你也来测测你的轻食吧！', 375, infoY + 60);
+
+  ctx.fillStyle = '#9b7070';
+  ctx.font = '22px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('扫码看看你的轻食热量有没有虚标', 375, infoY + 100);
+
+  // 数据来源
+  ctx.fillStyle = '#b09090';
+  ctx.font = '18px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('数据来源：上海市消保委《60款轻食样品调查结果》', 375, infoY + 180);
+
+  // 底部
+  ctx.fillStyle = '#ccc';
+  ctx.font = '18px "PingFang SC", "Microsoft YaHei", sans-serif';
+  ctx.fillText('长按保存图片，分享给好友', 375, 1070);
+
+  // 渲染为图片
+  const posterImg = canvas.toDataURL('image/jpeg', 0.88);
+
+  // 显示弹窗
+  showPosterModal(posterImg);
+}
+
+function showPosterModal(imgSrc) {
+  const existing = document.querySelector('.poster-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.className = 'poster-modal';
+  modal.innerHTML = `
+    <img src="${imgSrc}" alt="分享海报" id="poster-img">
+    <p class="pm-hint">👆 长按图片保存到相册<br>然后发朋友圈或发给好友</p>
+    <button class="pm-close" onclick="this.parentElement.remove()">关闭</button>
+  `;
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) modal.remove();
+  });
+  document.body.appendChild(modal);
+}
+
+function handleShare() {
+  if (isWechat) {
+    showWxGuide();
+    return;
+  }
+  const text = '🥗 轻食的「热量谎言」：85%产品热量虚标，最高超标5.6倍！你也来搭配一份轻食，看看真实热量有多高→';
+  if (navigator.share) {
+    navigator.share({ title: '轻食的「热量谎言」', text, url: window.location.href }).catch(() => copyText(text + ' ' + window.location.href));
+  } else {
+    copyText(text + ' ' + window.location.href);
+  }
+}
+
+// ==================== WECHAT JSSDK ====================
+async function initWxShare() {
+  if (!isWechat) return; // 非微信环境，跳过
+
+  // 加载微信 JS-SDK
+  const wxScript = document.createElement('script');
+  wxScript.src = 'https://res.wx.qq.com/open/js/jweixin-1.6.0.js';
+  document.head.appendChild(wxScript);
+
+  wxScript.onload = async () => {
+    try {
+      // 从服务端获取签名配置
+      const resp = await fetch('/api/wx-config?url=' + encodeURIComponent(window.location.href.split('#')[0]));
+      const data = await resp.json();
+
+      if (!data.ok) {
+        console.warn('[WX] JS-SDK 签名获取失败，使用 OG 标签降级:', data.error);
+        return;
+      }
+
+      wx.config({
+        debug: false,
+        appId: data.appId,
+        timestamp: data.timestamp,
+        nonceStr: data.nonceStr,
+        signature: data.signature,
+        jsApiList: [
+          'updateAppMessageShareData',
+          'updateTimelineShareData',
+        ]
+      });
+
+      wx.ready(function () {
+        // 自定义分享给好友
+        wx.updateAppMessageShareData({
+          title: '轻食的「热量谎言」：85%产品热量虚标',
+          desc: '上海消保委60款轻食测评真相，你以为的轻食可能并不轻。',
+          link: window.location.href,
+          imgUrl: 'https://give5555.github.io/calorie-news/share-cover.jpg',
+          success: function () {
+            console.log('[WX] 好友分享卡片设置成功');
+          }
+        });
+
+        // 自定义分享到朋友圈
+        wx.updateTimelineShareData({
+          title: '轻食的「热量谎言」：85%产品热量虚标，最高超标5.6倍！',
+          link: window.location.href,
+          imgUrl: 'https://give5555.github.io/calorie-news/share-cover.jpg',
+          success: function () {
+            console.log('[WX] 朋友圈分享卡片设置成功');
+          }
+        });
+
+        console.log('[WX] JS-SDK 分享卡片已配置');
+      });
+
+      wx.error(function (err) {
+        console.warn('[WX] JS-SDK 初始化失败，使用 OG 标签降级:', err);
+      });
+
+    } catch (err) {
+      console.warn('[WX] 签名请求失败，使用 OG 标签降级:', err);
+    }
+  };
+}
+
+// ==================== INIT ====================
+gameSelected = initGameSelected();
+gameRefreshUI();
+
+// Initial dot setup
+updateDots(0);
+
+// Immediately trigger P0 animations (first visible slide)
+setTimeout(() => {
+  const p0 = document.getElementById('s0');
+  if (p0) {
+    const animEls = p0.querySelectorAll('.anim-hidden');
+    animEls.forEach(el => el.classList.add('anim-visible'));
+  }
+}, 100);
+
+// 微信 JS-SDK 分享卡片初始化
+initWxShare();
+
+// 微信 X5 浏览器：修复 dvh 不兼容导致的滚动容器高度问题
+if (isWechat) {
+  function fixAppHeight() {
+    const app = document.getElementById('app');
+    if (app) app.style.height = window.innerHeight + 'px';
+  }
+  fixAppHeight();
+  window.addEventListener('resize', fixAppHeight);
+  // 微信内键盘弹出/收起也会改变可视区域
+  window.addEventListener('orientationchange', () => setTimeout(fixAppHeight, 300));
+}
+
+// ECharts CDN 降级：BootCDN 不可用时切换到 jsdelivr
+if (typeof echarts === 'undefined') {
+  window.echartsFallback && window.echartsFallback();
+}
+</script>
+</body>
+</html>
